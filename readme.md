@@ -1,6 +1,8 @@
 # Flask Practice Project
 
-![Main Image](static/flask-original.png)
+<p align="center">
+  <img src="static/flask-original.png" alt="Main Image">
+</p>
 
 This project is a simple Flask-based web application designed to demonstrate core concepts of building a REST API, managing user sessions, and implementing basic security features such as password hashing. It includes example endpoints for handling user data and interacting with a SQLite database.
 
