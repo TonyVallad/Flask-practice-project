@@ -51,15 +51,15 @@ def get_users():
     users_list = [{'id': user[0], 'username': user[1]} for user in users]
     return jsonify(users_list), 200
 
+# Route for index
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 # Route to display the add user form (Web)
 @app.route('/add_user', methods=['GET'])
 def add_user_form():
     return render_template('add_user.html')
-
-# Route to handle index page
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 # Route to handle form submission and redirect to user list (Web)
 @app.route('/add_user', methods=['POST'])
