@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Flask App - User list</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <h1>Users List</h1>
+    <ul>
+        {% for user in users %}
+        <li>{{ user[1] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/add_user">Add another user</a>
+</body>
+</html>
