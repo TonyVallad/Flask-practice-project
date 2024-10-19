@@ -1,100 +1,158 @@
-# Flask Practice Project
+### **<h1 align="center">Flask Practice Project</h1>**
 
 <p align="center">
-  <img src="static/flask-original.png" alt="Main Image">
+  <img src="app/static/flask-original.png" alt="Main Image">
 </p>
 
-This project is a simple Flask-based web application designed to demonstrate core concepts of building a REST API, managing user sessions, and implementing basic security features such as password hashing. It includes example endpoints for handling user data and interacting with a SQLite database.
+This project is a simple Flask application built to learn the basics of the Flask web framework, including:
 
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Getting Started](#getting-started)
+- Creating an API REST with Flask.
+- Developing a simple web application with user management.
+- Using SQLite as the database.
+- Handling forms and validating data with Flask-WTF and SQLAlchemy.
+- Implementing database models with SQLAlchemy.
+
+![Front-end Screenshot](app/static/screenshot.png)
+
+---
+
+### **Table of Contents**
+
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
 4. [API Endpoints](#api-endpoints)
-5. [Screenshots](#screenshots)
-6. [Technologies](#technologies)
-7. [Contributing](#contributing)
-8. [License](#license)
+5. [Technologies Used](#technologies-used)
+6. [Project Structure](#project-structure)
+7. [How the Project Works](#how-the-project-works)
+8. [Future Improvements](#future-improvements)
 
-## Project Overview
+---
 
-This project serves as a hands-on learning exercise for creating REST APIs with Flask, managing user sessions, and storing user data in a SQLite database. The goal is to build a functional web application with endpoints for user login, registration, and basic CRUD operations, all while ensuring data is secure.
+### **Features**
 
-## Features
+- **User Management**: Users can be added through a web form, and a list of all users can be viewed.
+- **API**: A simple REST API allows adding users via POST requests and fetching the list of users via GET requests.
+- **Email and Username Validation**:
+  - Usernames are validated for uniqueness, and can only contain letters, numbers, and certain special characters.
+  - Email addresses are validated for proper format and uniqueness.
+- **Database**: SQLite database stored in the `instance` folder (using SQLAlchemy).
+- **Password Hashing**: User passwords are hashed before being stored in the database using `Werkzeug`.
 
-- User authentication (login, logout, and session management)
-- Password security with hashing
-- SQLite integration for user data storage
-- RESTful API for basic CRUD operations
-- Example requests for GET and POST methods
-- Simple front-end interface built with HTML/CSS
+---
 
-## Getting Started
+### **Installation**
 
-To run the project locally, follow these steps:
+1. **Clone the repository**:
 
-### Prerequisites
-- Python 3.x
-- Flask
-- SQLite
+   ```bash
+   git clone https://github.com/TonyVallad/Flask-practice-project.git
+   cd Flask-practice-project
+   ```
 
-### Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/TonyVallad/Flask-practice-project.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd Flask-practice-project
-    ```
-3. Install the dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. Run the Flask app:
-    ```bash
-    flask run
-    ```
-5. Access the application at `http://127.0.0.1:5000/`.
+2. **Create a virtual environment** (recommended):
 
-## API Endpoints
+   ```bash
+   python -m venv venv
+   ```
 
-### GET /users
-Retrieve all registered users.
-```bash
-curl -X GET http://127.0.0.1:5000/users
+3. **Activate the virtual environment**:
+   - On Windows:
+     ```bash
+     .\venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. **Install the dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Set up the SQLite database**:
+   The database will be automatically created when you run the application if it doesn't exist.
+
+---
+
+### **Usage**
+
+1. **Run the Flask application**:
+
+   ```bash
+   python run.py
+   ```
+
+2. **Access the application**:
+   - Open your web browser and go to `http://127.0.0.1:5000/`.
+
+---
+
+### **API Endpoints**
+
+- **GET /api/users**: Fetch the list of all users.
+- **POST /api/users**: Add a new user via JSON request. Example request body:
+
+  ```json
+  {
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "password123"
+  }
+  ```
+
+---
+
+### **Technologies Used**
+
+- **Flask**: Web framework used to build the application.
+- **SQLAlchemy**: ORM used to interact with the SQLite database.
+- **Flask-WTF**: Form handling and validation library.
+- **Werkzeug**: Used for password hashing.
+- **SQLite**: Lightweight database for storing user information.
+- **Flask-CORS**: To enable CORS support.
+
+---
+
+### **Project Structure**
+
+```plaintext
+Flask-practice-project/
+├── app/
+│   ├── __init__.py          # Initializes the Flask app and sets up the database
+│   ├── routes.py            # Contains the app's routes and API endpoints
+│   ├── models.py            # Defines the User model for SQLAlchemy
+│   ├── forms.py             # Contains form validation logic using Flask-WTF
+│   ├── templates/           # Contains HTML templates
+│   │   ├── base.html        # Base template
+│   │   ├── index.html       # Home page
+│   │   ├── add_user.html    # Form to add a new user
+│   │   └── list_users.html  # Displays a list of all users
+│   ├── static/              # Contains static files (CSS, images)
+│   └── database.py          # Initializes the SQLite database
+├── instance/
+│   └── database.db          # SQLite database (automatically created)
+├── config.py                # App configuration
+├── run.py                   # Entry point for running the Flask app
+├── requirements.txt         # Lists the project dependencies
+└── README.md                # Project documentation
 ```
 
-### POST /register
-Register a new user with the following JSON data:
-```bash
-curl -X POST http://127.0.0.1:5000/register -H "Content-Type: application/json" -d '{"username": "user1", "password": "password123"}'
-```
+---
 
-### More endpoints to come...
+### **How the Project Works**
 
-## Screenshots
+1. When the application starts, the SQLite database is automatically created in the `instance` folder (if it doesn't already exist).
+2. Users can be added through the `/add_user` page. Their passwords are hashed before being stored in the database.
+3. The `/list_users` page displays all users in the database.
+4. The API allows for adding users via POST requests and fetching users via GET requests.
 
-- **Main Interface**  
-  ![Front-end Screenshot](static/screenshot.png)
+---
 
-- **GET API Test (Thunder Client)**  
-  ![GET Request Screenshot](static/API-test-GET.png)
+### **Future Improvements**
 
-- **POST API Test (Thunder Client)**  
-  ![POST Request Screenshot](static/API-test-POST.png)
-
-## Technologies
-
-- Python 3.x
-- Flask
-- SQLite
-- HTML/CSS (for the front-end)
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Add user authentication and session management.
+- Implement pagination for the user list.
+- Add more advanced features like user profile management.
