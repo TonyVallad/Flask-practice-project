@@ -173,8 +173,8 @@ Flask-practice-project/
 
 Here are some screenshots of the API tests.
 
-API GET:
-- ![API Test - GET](app/static/API-test-GET.png)
+- API GET:
+![API Test - GET](app/static/API-test-GET.png)
 
-API POST:
-- ![API Test - POST](app/static/API-test-POST.png)
+- API POST:
+![API Test - POST](app/static/API-test-POST.png)
