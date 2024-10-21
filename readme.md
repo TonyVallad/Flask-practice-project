@@ -1,7 +1,7 @@
 ### **<h1 align="center">Flask Practice Project</h1>**
 
 <p align="center">
-  <img src="app/static/flask-original.png" alt="Main Image">
+  <img src="app/static/logo.png" alt="Main Image">
 </p>
 
 This project is a simple Flask application built to learn the basics of the Flask web framework, including:
