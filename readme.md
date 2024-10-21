@@ -11,6 +11,9 @@ This project is a simple Flask application built to learn the basics of the Flas
 - Using SQLite as the database.
 - Handling forms and validating data with Flask-WTF and SQLAlchemy.
 - Implementing database models with SQLAlchemy.
+- Implementing login/logout functionality with session management.
+
+---
 
 ![Front-end Screenshot](app/static/screenshot.png)
 
@@ -31,7 +34,9 @@ This project is a simple Flask application built to learn the basics of the Flas
 
 ### **Features**
 
-- **User Management**: Users can be added through a web form, and a list of all users can be viewed.
+- **User Management**: Users can be added through a web form, and a list of all users can be viewed (accessible only when logged in).
+- **Login/Logout**: Users can log in and log out. When logged in, the username is displayed on the top banner, and when logged out, a login button is shown.
+- **Session Management**: Flask-Login is used to manage user sessions.
 - **API**: A simple REST API allows adding users via POST requests and fetching the list of users via GET requests.
 - **Email and Username Validation**:
   - Usernames are validated for uniqueness, and can only contain letters, numbers, and certain special characters.
@@ -110,6 +115,7 @@ This project is a simple Flask application built to learn the basics of the Flas
 - **Flask**: Web framework used to build the application.
 - **SQLAlchemy**: ORM used to interact with the SQLite database.
 - **Flask-WTF**: Form handling and validation library.
+- **Flask-Login**: User session management and authentication.
 - **Werkzeug**: Used for password hashing.
 - **SQLite**: Lightweight database for storing user information.
 - **Flask-CORS**: To enable CORS support.
@@ -125,10 +131,12 @@ Flask-practice-project/
 │   ├── routes.py            # Contains the app's routes and API endpoints
 │   ├── models.py            # Defines the User model for SQLAlchemy
 │   ├── forms.py             # Contains form validation logic using Flask-WTF
+│   ├── auth.py              # Handles login/logout and user authentication
 │   ├── templates/           # Contains HTML templates
 │   │   ├── base.html        # Base template
 │   │   ├── index.html       # Home page
 │   │   ├── add_user.html    # Form to add a new user
+│   │   ├── login.html       # Login page
 │   │   └── list_users.html  # Displays a list of all users
 │   ├── static/              # Contains static files (CSS, images)
 │   └── database.py          # Initializes the SQLite database
@@ -146,13 +154,27 @@ Flask-practice-project/
 
 1. When the application starts, the SQLite database is automatically created in the `instance` folder (if it doesn't already exist).
 2. Users can be added through the `/add_user` page. Their passwords are hashed before being stored in the database.
-3. The `/list_users` page displays all users in the database.
+3. The `/list_users` page is protected and displays all users in the database, but only when the user is logged in.
 4. The API allows for adding users via POST requests and fetching users via GET requests.
+5. Login and logout functionality is implemented using Flask-Login, and error messages are shown below the form fields for unrecognized usernames or incorrect passwords.
 
 ---
 
 ### **Future Improvements**
 
-- Add user authentication and session management.
+- Add user registration and password reset functionality.
+- Implement session expiration after a period of inactivity.
+- Add more advanced features like user roles and permissions.
 - Implement pagination for the user list.
-- Add more advanced features like user profile management.
+
+---
+
+### **Screenshots**
+
+Here are some screenshots of the API tests.
+
+API GET:
+- ![API Test - GET](app/static/API-test-GET.png)
+
+API POST:
+- ![API Test - POST](app/static/API-test-POST.png)
