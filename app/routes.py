@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, flash
+from flask_login import login_required
 from .forms import UserForm
 from .models import User, db  # Import SQLAlchemy instance and User model
 
@@ -37,8 +38,9 @@ def add_user_form_submit():
 
 # Route to render the user list page (for the web interface)
 @main_bp.route('/list_users', methods=['GET'])
+@login_required
 def list_users():
-    users = User.query.all()  # Use SQLAlchemy ORM to query users
+    users = User.query.all()
     return render_template('list_users.html', users=users)
 
 
