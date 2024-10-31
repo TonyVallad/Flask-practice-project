@@ -178,3 +178,11 @@ Here are some screenshots of the API tests.
 
 - API POST:
 ![API Test - POST](app/static/API-test-POST.png)
+
+---
+
+### **License**
+
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software in any project, personal or commercial, provided that you include a copy of the original license and copyright notice.
+
+For more information, see the [LICENSE](LICENSE) file.
